@@ -16,7 +16,7 @@ void loop() {
   int yVal = analogRead(xyzPins[1]);
   int zVal = digitalRead(xyzPins[2]);
 
-  if (zval == 0) { // Button is pressed
+  if (zVal == 0) { // Button is pressed
     // Rotate a full turn
     moveSteps(true, 32*64, 3);
     delay(1000);
@@ -25,7 +25,7 @@ void loop() {
     moveSteps(false, 32*64, 3);
     delay(1000);
   } else { // Button is not pressed
-    moveOneStep(xVal < 0);
+    moveAround(xVal < (1023/2)+100, 1, map(xVal, 0, 1023, 3, 20));
   }
 }
 
