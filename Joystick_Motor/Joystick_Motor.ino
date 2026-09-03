@@ -12,13 +12,21 @@ void setup() {
 }
 
 void loop() {
-  // Rotate a full turn
-  moveSteps(true, 32*64, 3);
-  delay(1000);
+  int xVal = analogRead(xyzPins[0]);
+  int yVal = analogRead(xyzPins[1]);
+  int zVal = digitalRead(xyzPins[2]);
 
-  // Rotate a full turn towards the other direction
-  moveSteps(false, 32*64, 3);
-  delay(1000);
+  if (zval == 0) { // Button is pressed
+    // Rotate a full turn
+    moveSteps(true, 32*64, 3);
+    delay(1000);
+
+    // Rotate a full turn towards the other direction
+    moveSteps(false, 32*64, 3);
+    delay(1000);
+  } else { // Button is not pressed
+    moveOneStep(xVal < 0);
+  }
 }
 
 void moveSteps(bool dir, int steps, byte ms) {
